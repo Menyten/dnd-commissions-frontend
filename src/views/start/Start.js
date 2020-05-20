@@ -1,11 +1,17 @@
 import React from "react";
-import { Typography } from "@material-ui/core";
+import { Container } from "@material-ui/core";
+
+import NavBar from "../../components/common/navbar/NavBar";
+import Hero from "../../components/start/hero/Hero";
 
 const Start = () => {
   return (
-    <div>
-      <Typography>Hello</Typography>
-    </div>
+    <>
+      <NavBar />
+      <Container>
+        <Hero />
+      </Container>
+    </>
   );
 };
 

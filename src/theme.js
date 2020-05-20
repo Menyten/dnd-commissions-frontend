@@ -1,3 +1,14 @@
-import { createMuiTheme } from "@material-ui/core/styles";
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 
-export default createMuiTheme({});
+export default responsiveFontSizes(
+  createMuiTheme({
+    palette: {
+      primary: {
+        main: "#ccc",
+      },
+      text: {
+        primary: "#fff",
+      },
+    },
+  })
+);
