@@ -1,10 +1,15 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   appbar: {
-    backgroundColor: "#000",
-    borderBottom: `1px solid ${theme.palette.primary.main}`,
+    backgroundColor: '#fff'
   },
+  title: {
+    flexGrow: 1
+  },
+  button: {
+    marginLeft: theme.spacing(2)
+  }
 }));
 
 export default useStyles;
