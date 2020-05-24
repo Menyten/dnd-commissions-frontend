@@ -4,10 +4,11 @@ export default responsiveFontSizes(
   createMuiTheme({
     palette: {
       primary: {
-        main: "#ccc",
+        main: "#E32C17",
       },
       text: {
         primary: "#fff",
+        secondary: "#000",
       },
     },
   })

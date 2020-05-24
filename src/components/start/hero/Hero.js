@@ -51,9 +51,6 @@ const Hero = () => {
           </section>
           <footer className={classes.footer}>
             <Button variant="contained" color="primary" size="large">
-              Sign up
-            </Button>
-            <Button variant="outlined" color="secondary" size="large">
               Browse
             </Button>
           </footer>

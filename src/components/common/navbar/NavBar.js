@@ -7,15 +7,15 @@ const NavBar = () => {
   const classes = navbarStyles();
 
   return (
-    <Container>
-      <AppBar className={classes.appbar} position="static">
+    <AppBar className={classes.appbar} position="static">
+      <Container disableGutters={true}>
         <Toolbar>
-          <Typography variant="h6" component="h1" color="primary">
+          <Typography variant="h6" component="h1" color="textPrimary">
             Dnd-commissions
           </Typography>
         </Toolbar>
-      </AppBar>
-    </Container>
+      </Container>
+    </AppBar>
   );
 };
 

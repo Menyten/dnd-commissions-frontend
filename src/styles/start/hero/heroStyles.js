@@ -1,10 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
     height: "20rem",
     backgroundColor: "lightgrey",
+    marginBottom: theme.spacing(4),
   },
   image: {
     position: "absolute",
@@ -29,9 +30,6 @@ const useStyles = makeStyles(() => ({
   },
   footer: {
     alignSelf: "flex-end",
-    "& > :first-child": {
-      marginRight: "1rem",
-    },
   },
 }));
 

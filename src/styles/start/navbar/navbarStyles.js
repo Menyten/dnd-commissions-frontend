@@ -1,9 +1,9 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   appbar: {
     backgroundColor: "#000",
-    borderBottom: "1px solid #E32C17",
+    borderBottom: `1px solid ${theme.palette.primary.main}`,
   },
 }));
 
