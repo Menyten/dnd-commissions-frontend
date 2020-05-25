@@ -1,8 +1,8 @@
-import React from "react";
-import { Paper, Typography, Button, Box } from "@material-ui/core";
+import React from 'react';
+import { Paper, Typography, Button, Box } from '@material-ui/core';
 
-import heroStyles from "../../../styles/start/hero/heroStyles";
-import hero from "../../../assets/hero.jpg";
+import heroStyles from '../../../styles/start/hero/heroStyles';
+import hero from '../../../assets/hero.jpg';
 
 const Hero = () => {
   const classes = heroStyles();
@@ -26,9 +26,9 @@ const Hero = () => {
           <section>
             <header>
               <Typography
+                className={classes.title}
                 variant="h4"
                 component="h2"
-                color="textPrimary"
                 gutterBottom={true}
               >
                 Sell your art!

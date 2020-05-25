@@ -9,9 +9,7 @@ const Panel = ({ children, title }) => {
   return (
     <Grid className={classes.root} container spacing={3}>
       <Grid item xs={12}>
-        <Typography variant="h4" color="textSecondary">
-          {title}
-        </Typography>
+        <Typography variant="h4">{title}</Typography>
       </Grid>
       <Grid className={classes.item} item xs={12}>
         {children}

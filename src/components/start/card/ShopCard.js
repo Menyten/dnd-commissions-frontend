@@ -17,17 +17,10 @@ const ShopCard = ({ image, shopTitle, shortShopDescription }) => {
     <Card className={classes.root}>
       <CardMedia className={classes.media} image={image} />
       <CardContent>
-        <Typography
-          gutterBottom
-          variant="h5"
-          component="h2"
-          color="textSecondary"
-        >
+        <Typography gutterBottom variant="h5" component="h2">
           {shopTitle}
         </Typography>
-        <Typography variant="body2" color="textSecondary">
-          {shortShopDescription}
-        </Typography>
+        <Typography variant="body2">{shortShopDescription}</Typography>
       </CardContent>
       <CardActions>
         <Button color="primary">see shop</Button>
