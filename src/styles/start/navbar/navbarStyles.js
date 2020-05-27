@@ -5,7 +5,8 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#fff'
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    textDecoration: 'none'
   },
   button: {
     marginLeft: theme.spacing(2)

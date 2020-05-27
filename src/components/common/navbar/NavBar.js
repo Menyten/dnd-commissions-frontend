@@ -6,6 +6,7 @@ import {
   Button,
   Typography
 } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import navbarStyles from '../../../styles/start/navbar/navbarStyles';
 
@@ -19,8 +20,9 @@ const NavBar = () => {
           <Typography
             className={classes.title}
             variant="h6"
-            component="h1"
             color="textSecondary"
+            component={Link}
+            to="/"
           >
             Dnd-commissions
           </Typography>
@@ -29,7 +31,8 @@ const NavBar = () => {
             className={classes.button}
             variant="outlined"
             color="primary"
-            component="a"
+            component={Link}
+            to="/signup"
           >
             Sign up
           </Button>
