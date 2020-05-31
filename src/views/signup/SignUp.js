@@ -5,18 +5,18 @@ import {
   Grid,
   TextField,
   Typography,
-  Paper,
   Button
 } from '@material-ui/core';
 
-import signupStyles from '../../styles/signup/signupStyles';
+import formStyles from '../../styles/common/form/formStyles';
 import NavBar from '../../components/common/navbar/NavBar';
+import Form from '../../components/common/form/Form';
 
 import { fetchy } from '../../utils/fetchy';
 
 const SignUp = () => {
   const { register, handleSubmit, errors, watch } = useForm();
-  const classes = signupStyles();
+  const classes = formStyles();
 
   const query = /* GraphQL */ `
     mutation(
@@ -40,21 +40,20 @@ const SignUp = () => {
     }
   `;
 
-  const onSubmit = async values => {
-    const res = await fetchy.post('', {
+  const onSubmit = async data => {
+    await fetchy.post('', {
       query,
       variables: {
-        ...values
+        ...data
       }
     });
-    console.log(await res.json());
   };
 
   const handleFieldErrorMessages = name => {
     if (errors[name] && errors[name].type === 'required')
       return 'This field is required';
     if (errors[name] && errors[name].type === 'minLength')
-      return 'Username must be a minimum of 8 characters.';
+      return 'Field must be a minimum of 8 characters.';
     if (errors[name] && errors[name].type === 'pattern')
       return 'Incorrect email address.';
     if (errors[name] && errors[name].type === 'validate')
@@ -65,12 +64,7 @@ const SignUp = () => {
     <>
       <NavBar />
       <Container>
-        <Paper
-          className={classes.root}
-          component="form"
-          noValidate
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <Form onSubmit={handleSubmit(onSubmit)}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Typography align="center" variant="h4">
@@ -190,7 +184,7 @@ const SignUp = () => {
               </Button>
             </Grid>
           </Grid>
-        </Paper>
+        </Form>
       </Container>
     </>
   );

@@ -1,17 +1,49 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Container,
   AppBar,
   Toolbar,
   Button,
-  Typography
+  Typography,
+  IconButton,
+  Link as MuiLink
 } from '@material-ui/core';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from 'react-router-dom';
 
 import navbarStyles from '../../../styles/start/navbar/navbarStyles';
 
+import { GlobalContext } from '../../../context/GlobalState';
+
 const NavBar = () => {
+  const { state } = useContext(GlobalContext);
+  const { user } = state;
   const classes = navbarStyles();
+
+  const renderSignedInNavigation = () => (
+    <MuiLink component={Link} to="/profile">
+      <IconButton color="primary">
+        <AccountCircle fontSize="large" />
+      </IconButton>
+    </MuiLink>
+  );
+
+  const renderSignedOutNavigation = () => (
+    <>
+      <Button color="primary" component={Link} to="/signin">
+        Sign in
+      </Button>
+      <Button
+        className={classes.button}
+        variant="outlined"
+        color="primary"
+        component={Link}
+        to="/signup"
+      >
+        Sign up
+      </Button>
+    </>
+  );
 
   return (
     <AppBar className={classes.appbar} position="static">
@@ -26,16 +58,8 @@ const NavBar = () => {
           >
             Dnd-commissions
           </Typography>
-          <Button color="primary">Sign in</Button>
-          <Button
-            className={classes.button}
-            variant="outlined"
-            color="primary"
-            component={Link}
-            to="/signup"
-          >
-            Sign up
-          </Button>
+          {user && renderSignedInNavigation()}
+          {!user && renderSignedOutNavigation()}
         </Toolbar>
       </Container>
     </AppBar>

@@ -3,16 +3,18 @@ import { Switch, Route } from 'react-router-dom';
 
 import Start from './views/start/Start';
 import SignUp from './views/signup/SignUp';
+import SignIn from './views/signin/SignIn';
+import Profile from './views/profile/Profile';
+
+import Authenticated from './components/app/authenticated/Authenticated';
 
 function App() {
   return (
     <Switch>
-      <Route path="/signup">
-        <SignUp />
-      </Route>
-      <Route path="/">
-        <Start />
-      </Route>
+      <Authenticated path="/signin" component={SignIn} />
+      <Route path="/signup" component={SignUp} />
+      <Route path="/profile" component={Profile} />
+      <Route path="/" component={Start} />
     </Switch>
   );
 }
