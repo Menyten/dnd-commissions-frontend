@@ -7,15 +7,19 @@ import SignIn from './views/signin/SignIn';
 import Profile from './views/profile/Profile';
 
 import Authenticated from './components/app/authenticated/Authenticated';
+import Toast from './components/common/toast/Toast';
 
 function App() {
   return (
-    <Switch>
-      <Authenticated path="/signin" component={SignIn} />
-      <Authenticated path="/signup" component={SignUp} />
-      <Route path="/profile" component={Profile} />
-      <Route path="/" component={Start} />
-    </Switch>
+    <>
+      <Switch>
+        <Authenticated path="/signin" component={SignIn} />
+        <Authenticated path="/signup" component={SignUp} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/" component={Start} />
+      </Switch>
+      <Toast />
+    </>
   );
 }
 

@@ -9,14 +9,12 @@ import { GlobalProvider } from './context/GlobalState';
 
 ReactDOM.render(
   <MuiThemeProvider theme={theme}>
-    <React.StrictMode>
-      <CssBaseline />
-      <GlobalProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </GlobalProvider>
-    </React.StrictMode>
+    <CssBaseline />
+    <GlobalProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </GlobalProvider>
   </MuiThemeProvider>,
   document.getElementById('root')
 );

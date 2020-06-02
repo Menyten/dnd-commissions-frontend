@@ -56,7 +56,7 @@ const NavBar = () => {
             component={Link}
             to="/"
           >
-            Dnd-commissions
+            Squig's lair
           </Typography>
           {user && renderSignedInNavigation()}
           {!user && renderSignedOutNavigation()}

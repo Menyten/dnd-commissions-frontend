@@ -1,11 +1,23 @@
+import {
+  SET_USER,
+  REMOVE_USER,
+  SET_TOKEN,
+  SHOW_SNACKBAR,
+  HIDE_SNACKBAR
+} from '../types';
+
 export default (state, { type, payload }) => {
   switch (type) {
-    case 'SIGN_IN_USER':
+    case SET_USER:
       return { ...state, user: payload };
-    case 'SIGN_OUT_USER':
+    case REMOVE_USER:
       return { ...state, user: null };
-    case 'SET_TOKEN':
+    case SET_TOKEN:
       return { ...state, token: payload };
+    case SHOW_SNACKBAR:
+      return { ...state, snackbar: { ...payload, open: true } };
+    case HIDE_SNACKBAR:
+      return { ...state, snackbar: { ...state.snackbar, open: false } };
     default:
       return state;
   }

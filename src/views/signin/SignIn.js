@@ -8,12 +8,14 @@ import {
   Button
 } from '@material-ui/core';
 
+import { GlobalContext } from '../../context/GlobalState';
+import { showSnackbar } from '../../context/actions/snackbarActions';
+import { setUser, setToken } from '../../context/actions/authActions';
+import { fetchy } from '../../utils/fetchy';
+
 import formStyles from '../../styles/common/form/formStyles';
 import NavBar from '../../components/common/navbar/NavBar';
 import Form from '../../components/common/form/Form';
-
-import { GlobalContext } from '../../context/GlobalState';
-import { fetchy } from '../../utils/fetchy';
 
 const SignIn = () => {
   const { dispatch } = useContext(GlobalContext);
@@ -43,12 +45,13 @@ const SignIn = () => {
       }
     });
     if (!res.ok) {
-      // TODO: Display toast with error message
-      return console.log('Error');
+      return dispatch(
+        showSnackbar('error', 'Wrong username or password. Please try again!')
+      );
     }
     const parsed = await res.json();
-    dispatch({ type: 'SET_TOKEN', payload: parsed.data.signIn.token });
-    dispatch({ type: 'SIGN_IN_USER', payload: parsed.data.signIn.user });
+    dispatch(setToken(parsed.data.signIn.token));
+    dispatch(setUser(parsed.data.signIn.user));
   };
 
   const handleFieldErrorMessage = name =>
