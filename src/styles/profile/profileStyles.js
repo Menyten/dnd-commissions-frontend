@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme => ({
   },
   panelRight: {
     flex: 1,
-    height: '100%'
+    height: '100%',
+    padding: theme.spacing(3)
   },
   panelLeft: {
     width: '15rem',

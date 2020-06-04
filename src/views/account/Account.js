@@ -1,4 +1,5 @@
 import React from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 import {
   Container,
   Paper,
@@ -15,15 +16,30 @@ import {
   Store,
   Settings,
   ShoppingBasket,
-  Message
+  Message,
+  ExitToApp
 } from '@material-ui/icons';
 
 import NavBar from '../../components/common/navbar/NavBar';
+import CreateShop from '../../components/profile/createshop/CreateShop';
 
 import profileStyles from '../../styles/profile/profileStyles';
+import { fetchy } from '../../utils/fetchy';
 
-const Profile = () => {
+const Account = () => {
   const classes = profileStyles();
+
+  const signOut = async () => {
+    const res = await fetchy.post('', {
+      query: /* GraphQL */ `
+        {
+          signOut
+        }
+      `
+    });
+
+    console.log(await res.json());
+  };
 
   return (
     <>
@@ -57,17 +73,28 @@ const Profile = () => {
                   </ListItemIcon>
                   <ListItemText primary="Settings" />
                 </ListItem>
-                <ListItem button>
+                <ListItem button component={Link} to="/account/create-shop">
                   <ListItemIcon>
                     <Store color="primary" />
                   </ListItemIcon>
                   <ListItemText primary="Start a shop" />
                 </ListItem>
+                <ListItem button onClick={signOut}>
+                  <ListItemIcon>
+                    <ExitToApp color="primary" />
+                  </ListItemIcon>
+                  <ListItemText primary="Log out" />
+                </ListItem>
               </List>
             </Paper>
           </Hidden>
           <Paper className={classes.panelRight}>
-            <Typography>Hello</Typography>
+            <Typography variant="h4" gutterBottom>
+              Create a shop
+            </Typography>
+            <Route path="/account/create-shop">
+              <CreateShop />
+            </Route>
           </Paper>
         </Box>
       </Container>
@@ -75,4 +102,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Account;

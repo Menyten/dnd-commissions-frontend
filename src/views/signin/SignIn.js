@@ -12,6 +12,7 @@ import { GlobalContext } from '../../context/GlobalState';
 import { showSnackbar } from '../../context/actions/snackbarActions';
 import { setUser, setToken } from '../../context/actions/authActions';
 import { fetchy } from '../../utils/fetchy';
+import query from '../../graphql/queries/signIn';
 
 import formStyles from '../../styles/common/form/formStyles';
 import NavBar from '../../components/common/navbar/NavBar';
@@ -21,21 +22,6 @@ const SignIn = () => {
   const { dispatch } = useContext(GlobalContext);
   const { register, errors, handleSubmit } = useForm();
   const classes = formStyles();
-
-  const query = /* GraphQL */ `
-    query($email: String!, $password: String!) {
-      signIn(signInInput: { email: $email, password: $password }) {
-        token
-        user {
-          _id
-          username
-          firstname
-          lastname
-          email
-        }
-      }
-    }
-  `;
 
   const onSubmit = async data => {
     const res = await fetchy.post('', {

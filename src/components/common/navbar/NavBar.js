@@ -21,7 +21,7 @@ const NavBar = () => {
   const classes = navbarStyles();
 
   const renderSignedInNavigation = () => (
-    <MuiLink component={Link} to="/profile">
+    <MuiLink component={Link} to="/account">
       <IconButton color="primary">
         <AccountCircle fontSize="large" />
       </IconButton>
