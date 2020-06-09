@@ -8,6 +8,7 @@ export default /* GraphQL */ `
         firstname
         lastname
         email
+        role
       }
     }
   }

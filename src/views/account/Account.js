@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Link } from 'react-router-dom';
 import {
   Container,
@@ -23,10 +23,13 @@ import {
 import NavBar from '../../components/common/navbar/NavBar';
 import CreateShop from '../../components/profile/createshop/CreateShop';
 
+import { GlobalContext } from '../../context/GlobalState';
 import accountStyles from '../../styles/account/accountStyles';
 import { fetchy } from '../../utils/fetchy';
 
 const Account = () => {
+  const { state } = useContext(GlobalContext);
+  const { user } = state;
   const classes = accountStyles();
 
   const signOut = async () => {
@@ -73,12 +76,14 @@ const Account = () => {
                   </ListItemIcon>
                   <ListItemText primary="Settings" />
                 </ListItem>
-                <ListItem button component={Link} to="/account/create-shop">
-                  <ListItemIcon>
-                    <Store color="primary" />
-                  </ListItemIcon>
-                  <ListItemText primary="Start a shop" />
-                </ListItem>
+                {user && user.role !== 'shopkeeper' && (
+                  <ListItem button component={Link} to="/account/create-shop">
+                    <ListItemIcon>
+                      <Store color="primary" />
+                    </ListItemIcon>
+                    <ListItemText primary="Start a shop" />
+                  </ListItem>
+                )}
                 <ListItem button onClick={signOut}>
                   <ListItemIcon>
                     <ExitToApp color="primary" />

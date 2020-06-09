@@ -2,14 +2,22 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Grid, TextField, Box, Button } from '@material-ui/core';
 
+import { fetchy } from '../../../utils/fetchy';
 import { getFieldErrorMessages } from '../../../utils/fieldErrorMessages';
+import query from '../../../graphql/queries/createShop';
 
 const CreateShop = () => {
   const { register, handleSubmit, errors } = useForm();
 
-  const createShop = data => {
+  const createShop = async data => {
+    const res = await fetchy.post('', {
+      query,
+      variables: {
+        ...data
+      }
+    });
+    console.log(await res.json());
     console.log('created');
-    console.log(data);
   };
 
   const handleErrors = fieldName => getFieldErrorMessages(errors, fieldName);

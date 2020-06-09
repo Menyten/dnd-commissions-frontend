@@ -8,7 +8,7 @@ import {
   IconButton,
   Link as MuiLink
 } from '@material-ui/core';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import { AccountCircle, Store } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
 import navbarStyles from '../../../styles/start/navbar/navbarStyles';
@@ -21,12 +21,25 @@ const NavBar = () => {
   const classes = navbarStyles();
 
   const renderSignedInNavigation = () => (
-    <MuiLink component={Link} to="/account">
-      <IconButton color="primary">
-        <AccountCircle fontSize="large" />
-      </IconButton>
-    </MuiLink>
+    <>
+      {renderShopkeeperNavigation()}
+      <MuiLink component={Link} to="/account">
+        <IconButton color="primary">
+          <AccountCircle fontSize="large" />
+        </IconButton>
+      </MuiLink>
+      )
+    </>
   );
+
+  const renderShopkeeperNavigation = () =>
+    user.role === 'shopkeeper' && (
+      <MuiLink component={Link} to="/account">
+        <IconButton color="primary">
+          <Store fontSize="large" />
+        </IconButton>
+      </MuiLink>
+    );
 
   const renderSignedOutNavigation = () => (
     <>
