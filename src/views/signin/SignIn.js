@@ -12,6 +12,7 @@ import { GlobalContext } from '../../context/GlobalState';
 import { showSnackbar } from '../../context/actions/snackbarActions';
 import { setUser, setToken } from '../../context/actions/authActions';
 import { fetchy } from '../../utils/fetchy';
+import { getFieldErrorMessages } from '../../utils/fieldErrorMessages';
 import query from '../../graphql/queries/signIn';
 
 import formStyles from '../../styles/common/form/formStyles';
@@ -40,8 +41,7 @@ const SignIn = () => {
     dispatch(setUser(parsed.data.signIn.user));
   };
 
-  const handleFieldErrorMessage = name =>
-    errors[name] && 'This field is required';
+  const handleErrors = fieldName => getFieldErrorMessages(errors, fieldName);
 
   return (
     <>
@@ -61,8 +61,8 @@ const SignIn = () => {
                 name="email"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessage('email')}
-                helperText={handleFieldErrorMessage('email')}
+                error={!!handleErrors('email')}
+                helperText={handleErrors('email')}
                 inputRef={register({ required: true })}
               />
             </Grid>
@@ -73,8 +73,8 @@ const SignIn = () => {
                 name="password"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessage('password')}
-                helperText={handleFieldErrorMessage('password')}
+                error={!!handleErrors('password')}
+                helperText={handleErrors('password')}
                 inputRef={register({ required: true })}
               />
             </Grid>

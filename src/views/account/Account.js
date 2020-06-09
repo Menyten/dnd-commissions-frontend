@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import {
   Container,
   Paper,
@@ -23,11 +23,11 @@ import {
 import NavBar from '../../components/common/navbar/NavBar';
 import CreateShop from '../../components/profile/createshop/CreateShop';
 
-import profileStyles from '../../styles/profile/profileStyles';
+import accountStyles from '../../styles/account/accountStyles';
 import { fetchy } from '../../utils/fetchy';
 
 const Account = () => {
-  const classes = profileStyles();
+  const classes = accountStyles();
 
   const signOut = async () => {
     const res = await fetchy.post('', {

@@ -13,32 +13,14 @@ import NavBar from '../../components/common/navbar/NavBar';
 import Form from '../../components/common/form/Form';
 
 import { fetchy } from '../../utils/fetchy';
+import { getFieldErrorMessages } from '../../utils/fieldErrorMessages';
+import query from '../../graphql/queries/signUp';
 
 const SignUp = () => {
   const { register, handleSubmit, errors, watch } = useForm();
   const classes = formStyles();
 
-  const query = /* GraphQL */ `
-    mutation(
-      $username: String!
-      $firstname: String!
-      $lastname: String!
-      $email: String!
-      $password: String!
-      $age: String!
-    ) {
-      createAccount(
-        accountInput: {
-          username: $username
-          firstname: $firstname
-          lastname: $lastname
-          email: $email
-          password: $password
-          age: $age
-        }
-      )
-    }
-  `;
+  const handleErrors = fieldName => getFieldErrorMessages(errors, fieldName);
 
   const onSubmit = async data => {
     await fetchy.post('', {
@@ -47,17 +29,6 @@ const SignUp = () => {
         ...data
       }
     });
-  };
-
-  const handleFieldErrorMessages = name => {
-    if (errors[name] && errors[name].type === 'required')
-      return 'This field is required';
-    if (errors[name] && errors[name].type === 'minLength')
-      return 'Field must be a minimum of 8 characters.';
-    if (errors[name] && errors[name].type === 'pattern')
-      return 'Incorrect email address.';
-    if (errors[name] && errors[name].type === 'validate')
-      return 'Must be the same as password';
   };
 
   return (
@@ -80,8 +51,8 @@ const SignUp = () => {
                 name="username"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessages('username')}
-                helperText={handleFieldErrorMessages('username')}
+                error={!!handleErrors('username')}
+                helperText={handleErrors('username')}
                 inputRef={register({
                   required: true
                 })}
@@ -93,8 +64,8 @@ const SignUp = () => {
                 name="firstname"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessages('firstname')}
-                helperText={handleFieldErrorMessages('firstname')}
+                error={!!handleErrors('firstname')}
+                helperText={handleErrors('firstname')}
                 inputRef={register({
                   required: true
                 })}
@@ -106,8 +77,8 @@ const SignUp = () => {
                 name="lastname"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessages('lastname')}
-                helperText={handleFieldErrorMessages('lastname')}
+                error={!!handleErrors('lastname')}
+                helperText={handleErrors('lastname')}
                 inputRef={register({
                   required: true
                 })}
@@ -120,8 +91,8 @@ const SignUp = () => {
                 name="email"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessages('email')}
-                helperText={handleFieldErrorMessages('email')}
+                error={!!handleErrors('email')}
+                helperText={handleErrors('email')}
                 inputRef={register({
                   required: true,
                   pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
@@ -136,8 +107,8 @@ const SignUp = () => {
                 InputLabelProps={{ shrink: true }}
                 required
                 fullWidth
-                error={!!handleFieldErrorMessages('age')}
-                helperText={handleFieldErrorMessages('age')}
+                error={!!handleErrors('age')}
+                helperText={handleErrors('age')}
                 inputRef={register({
                   required: true
                 })}
@@ -150,8 +121,8 @@ const SignUp = () => {
                 name="password"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessages('password')}
-                helperText={handleFieldErrorMessages('password')}
+                error={!!handleErrors('password')}
+                helperText={handleErrors('password')}
                 inputRef={register({
                   required: true,
                   minLength: 8
@@ -165,8 +136,8 @@ const SignUp = () => {
                 name="passwordRepeat"
                 required
                 fullWidth
-                error={!!handleFieldErrorMessages('passwordRepeat')}
-                helperText={handleFieldErrorMessages('passwordRepeat')}
+                error={!!handleErrors('passwordRepeat')}
+                helperText={handleErrors('passwordRepeat')}
                 inputRef={register({
                   validate: value => value === watch('password')
                 })}

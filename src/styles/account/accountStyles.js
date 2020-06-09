@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: theme.spacing(5),
-    height: '80vh'
+    marginTop: theme.spacing(5)
   },
   container: {
     minHeight: '80vh'
