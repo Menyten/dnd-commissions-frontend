@@ -76,7 +76,7 @@ const Account = () => {
                   </ListItemIcon>
                   <ListItemText primary="Settings" />
                 </ListItem>
-                {user && user.role !== 'shopkeeper' && (
+                {user?.role !== 'shopkeeper' && (
                   <ListItem button component={Link} to="/account/create-shop">
                     <ListItemIcon>
                       <Store color="primary" />

@@ -9,6 +9,7 @@ export default /* GraphQL */ `
         lastname
         email
         role
+        shopId
       }
     }
   }

@@ -34,7 +34,7 @@ const NavBar = () => {
 
   const renderShopkeeperNavigation = () =>
     user.role === 'shopkeeper' && (
-      <MuiLink component={Link} to="/account">
+      <MuiLink component={Link} to={`/shop/${user.shopId}`}>
         <IconButton color="primary">
           <Store fontSize="large" />
         </IconButton>

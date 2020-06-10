@@ -3,6 +3,7 @@ import reducer from './reducer';
 
 const initialState = {
   user: null,
+  shop: null,
   token: null,
   snackbar: {
     open: false,

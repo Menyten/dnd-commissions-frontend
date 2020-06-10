@@ -3,11 +3,14 @@ import {
   REMOVE_USER,
   SET_TOKEN,
   SHOW_SNACKBAR,
-  HIDE_SNACKBAR
+  HIDE_SNACKBAR,
+  SET_SHOP
 } from '../types';
 
 export default (state, { type, payload }) => {
   switch (type) {
+    case SET_SHOP:
+      return { ...state, shop: payload };
     case SET_USER:
       return { ...state, user: payload };
     case REMOVE_USER:
