@@ -1,6 +1,15 @@
 import React, { useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { Container, Grid, Paper, Typography } from '@material-ui/core';
+import {
+  Container,
+  Grid,
+  Paper,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Box
+} from '@material-ui/core';
 
 import NavBar from '../../components/common/navbar/NavBar';
 
@@ -14,6 +23,7 @@ import query from '../../graphql/queries/fetchShop';
 
 import { GlobalContext } from '../../context/GlobalState';
 import { setShop } from '../../context/actions/shopActions';
+import ShopCard from '../../components/start/card/ShopCard';
 
 const useStyles = makeStyles({
   banner: {
@@ -24,6 +34,16 @@ const useStyles = makeStyles({
     objectFit: 'cover',
     height: '15rem',
     width: '100%'
+  },
+  card: {
+    display: 'flex'
+  },
+  content: {
+    flex: 1
+  },
+  profileImage: {
+    height: 142,
+    width: 142
   }
 });
 
@@ -58,12 +78,57 @@ const Shop = () => {
               <img className={classes.image} src={template} alt="Shop image" />
             </Paper>
           </Grid>
+          <Grid item xs={12} md={7}>
+            <Card>
+              <CardContent>
+                <Typography variant="h4" component="h2" gutterBottom>
+                  {shop?.shopTitle}
+                </Typography>
+                <Typography>{shop?.shopDescription}</Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Card className={classes.card}>
+              <CardContent className={classes.content}>
+                <Typography variant="h5" component="h2" gutterBottom>
+                  Joelmosen
+                </Typography>
+                <Typography>Ratings</Typography>
+              </CardContent>
+              <CardMedia className={classes.profileImage} image={template} />
+            </Card>
+          </Grid>
           <Grid item xs={12}>
-            <Paper elevation={0}>
-              <Typography variant="h4" component="h2">
-                {shop?.shopTitle}
-              </Typography>
-            </Paper>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                <Typography variant="h4">Products</Typography>
+              </Grid>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <ShopCard
+                  shopTitle="Basic Sketch"
+                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <ShopCard
+                  shopTitle="Basic Sketch"
+                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <ShopCard
+                  shopTitle="Basic Sketch"
+                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6} md={4} lg={3}>
+                <ShopCard
+                  shopTitle="Basic Sketch"
+                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
+                />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </Container>
