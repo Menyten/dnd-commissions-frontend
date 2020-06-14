@@ -28,7 +28,6 @@ const NavBar = () => {
           <AccountCircle fontSize="large" />
         </IconButton>
       </MuiLink>
-      )
     </>
   );
 

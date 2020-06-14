@@ -21,45 +21,45 @@ const Start = () => {
           <Panel title="Highest rated shops">
             <ShopCard
               image={hero}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
             <ShopCard
               image={template}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
             <ShopCard
               image={template2}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
             <ShopCard
               image={template3}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
           </Panel>
           <Panel title="Recent purchases">
             <ShopCard
               image={hero}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
             <ShopCard
               image={template}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
             <ShopCard
               image={template2}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
             <ShopCard
               image={template3}
-              shopTitle="Joelmosens shop!"
-              shortShopDescription="I strive to create beautiful and rich art. I promise you won't be disappointed."
+              title="Joelmosens shop!"
+              description="I strive to create beautiful and rich art. I promise you won't be disappointed."
             />
           </Panel>
         </Paper>

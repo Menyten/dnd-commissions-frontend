@@ -10,7 +10,7 @@ import {
 
 import shopCardStyles from '../../../styles/start/shopcard/shopCardStyles';
 
-const ShopCard = ({ image, shopTitle, shortShopDescription }) => {
+const ShopCard = ({ image, title, description, price }) => {
   const classes = shopCardStyles();
 
   return (
@@ -18,12 +18,19 @@ const ShopCard = ({ image, shopTitle, shortShopDescription }) => {
       <CardMedia className={classes.media} image={image} />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
-          {shopTitle}
+          {title}
         </Typography>
-        <Typography variant="body2">{shortShopDescription}</Typography>
+        <Typography variant="body2" gutterBottom>
+          {description}
+        </Typography>
+        {price && (
+          <Typography variant="h6" component="p">
+            Price: {price} SEK
+          </Typography>
+        )}
       </CardContent>
       <CardActions>
-        <Button color="primary">see shop</Button>
+        <Button color="primary">{price ? 'buy' : 'see shop'}</Button>
       </CardActions>
     </Card>
   );

@@ -1,57 +1,33 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import {
   Container,
   Grid,
   Paper,
   Typography,
-  Card,
-  CardContent,
-  CardMedia,
+  IconButton,
   Box
 } from '@material-ui/core';
+import { AddCircle } from '@material-ui/icons';
 
 import NavBar from '../../components/common/navbar/NavBar';
-
-import template from '../../assets/template.jpg';
-
-import { makeStyles } from '@material-ui/core/styles';
-
-import { fetchy } from '../../utils/fetchy';
-
-import query from '../../graphql/queries/fetchShop';
+import ShopCard from '../../components/start/card/ShopCard';
+import ProductModal from '../../components/shop/modals/ProductModal';
 
 import { GlobalContext } from '../../context/GlobalState';
 import { setShop } from '../../context/actions/shopActions';
-import ShopCard from '../../components/start/card/ShopCard';
+import { fetchy } from '../../utils/fetchy';
+import query from '../../graphql/queries/fetchShop';
+import shopStyles from '../../styles/shop/shopStyles';
 
-const useStyles = makeStyles({
-  banner: {
-    width: '100%',
-    height: '15rem'
-  },
-  image: {
-    objectFit: 'cover',
-    height: '15rem',
-    width: '100%'
-  },
-  card: {
-    display: 'flex'
-  },
-  content: {
-    flex: 1
-  },
-  profileImage: {
-    height: 142,
-    width: 142
-  }
-});
+import template from '../../assets/template.jpg';
 
 const Shop = () => {
   const { dispatch, state } = useContext(GlobalContext);
   const { shop } = state;
   const { shopId } = useParams();
-  const classes = useStyles();
+  const classes = shopStyles();
+  const [productDialogOpen, setProductDialogOpen] = useState(false);
 
   useEffect(() => {
     const fetchShop = async () => {
@@ -67,9 +43,27 @@ const Shop = () => {
     fetchShop();
   }, [dispatch, shopId]);
 
+  const toggleProductDialog = () => setProductDialogOpen(!productDialogOpen);
+
+  const renderProducts = () =>
+    shop?.products.map(({ _id, price, productTitle, productDescription }) => (
+      <Grid item xs={12} sm={6} md={4} lg={3} key={_id}>
+        <ShopCard
+          image={template}
+          title={productTitle}
+          description={productDescription}
+          price={price}
+        />
+      </Grid>
+    ));
+
   return (
     <>
       <NavBar />
+      <ProductModal
+        open={productDialogOpen}
+        toggleDialog={toggleProductDialog}
+      />
       <Container>
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -78,56 +72,20 @@ const Shop = () => {
               <img className={classes.image} src={template} alt="Shop image" />
             </Paper>
           </Grid>
-          <Grid item xs={12} md={7}>
-            <Card>
-              <CardContent>
-                <Typography variant="h4" component="h2" gutterBottom>
-                  {shop?.shopTitle}
-                </Typography>
-                <Typography>{shop?.shopDescription}</Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md={5}>
-            <Card className={classes.card}>
-              <CardContent className={classes.content}>
-                <Typography variant="h5" component="h2" gutterBottom>
-                  Joelmosen
-                </Typography>
-                <Typography>Ratings</Typography>
-              </CardContent>
-              <CardMedia className={classes.profileImage} image={template} />
-            </Card>
-          </Grid>
+
           <Grid item xs={12}>
-            <Grid container spacing={3}>
+            <Grid container spacing={5}>
               <Grid item xs={12}>
-                <Typography variant="h4">Products</Typography>
+                <Box display="flex" alignItems="center">
+                  <Typography variant="h4">
+                    {shop?.owner.username}s products
+                  </Typography>
+                  <IconButton onClick={toggleProductDialog}>
+                    <AddCircle fontSize="large" color="primary" />
+                  </IconButton>
+                </Box>
               </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <ShopCard
-                  shopTitle="Basic Sketch"
-                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <ShopCard
-                  shopTitle="Basic Sketch"
-                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <ShopCard
-                  shopTitle="Basic Sketch"
-                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
-                />
-              </Grid>
-              <Grid item xs={12} sm={6} md={4} lg={3}>
-                <ShopCard
-                  shopTitle="Basic Sketch"
-                  shortShopDescription="I will draw a basic sketch in different poses for your character. It won't be super detailed"
-                />
-              </Grid>
+              {renderProducts()}
             </Grid>
           </Grid>
         </Grid>

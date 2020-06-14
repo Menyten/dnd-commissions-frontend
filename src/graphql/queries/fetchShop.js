@@ -2,10 +2,13 @@ export default /* GraphQL */ `
   query($shopId: ID) {
     fetchShop(shopId: $shopId) {
       _id
-      shopkeeperId
       shopTitle
       shopDescription
       shopImage
+      owner {
+        _id
+        username
+      }
       reviews {
         text
         rating
