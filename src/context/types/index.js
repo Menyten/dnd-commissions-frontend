@@ -1,5 +1,6 @@
 // SHOP
 export const SET_SHOP = 'SET_SHOP';
+export const SET_PRODUCTS = 'SET_PRODUCTS';
 
 // AUTH
 export const SET_USER = 'SET_USER';

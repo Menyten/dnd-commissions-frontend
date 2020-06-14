@@ -13,6 +13,7 @@ import { AddCircle } from '@material-ui/icons';
 import NavBar from '../../components/common/navbar/NavBar';
 import ShopCard from '../../components/start/card/ShopCard';
 import ProductModal from '../../components/shop/modals/ProductModal';
+import ShopOwner from '../../components/shop/shopowner/ShopOwner';
 
 import { GlobalContext } from '../../context/GlobalState';
 import { setShop } from '../../context/actions/shopActions';
@@ -74,15 +75,17 @@ const Shop = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Grid container spacing={5}>
+            <Grid container spacing={4}>
               <Grid item xs={12}>
                 <Box display="flex" alignItems="center">
                   <Typography variant="h4">
                     {shop?.owner.username}s products
                   </Typography>
-                  <IconButton onClick={toggleProductDialog}>
-                    <AddCircle fontSize="large" color="primary" />
-                  </IconButton>
+                  <ShopOwner>
+                    <IconButton onClick={toggleProductDialog}>
+                      <AddCircle fontSize="large" color="primary" />
+                    </IconButton>
+                  </ShopOwner>
                 </Box>
               </Grid>
               {renderProducts()}
