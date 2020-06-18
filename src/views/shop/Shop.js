@@ -11,7 +11,7 @@ import {
 import { AddCircle } from '@material-ui/icons';
 
 import NavBar from '../../components/common/navbar/NavBar';
-import ShopCard from '../../components/start/card/ShopCard';
+import ShopCard from '../../components/common/shopcard/ShopCard';
 import ProductModal from '../../components/shop/modals/ProductModal';
 import ShopOwner from '../../components/shop/shopowner/ShopOwner';
 

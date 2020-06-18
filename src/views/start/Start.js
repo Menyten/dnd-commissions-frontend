@@ -4,7 +4,7 @@ import { Container, Paper } from '@material-ui/core';
 import NavBar from '../../components/common/navbar/NavBar';
 import Hero from '../../components/start/hero/Hero';
 import Panel from '../../components/start/panel/Panel';
-import ShopCard from '../../components/start/card/ShopCard';
+import ShopCard from '../../components/common/shopcard/ShopCard';
 
 import hero from '../../assets/hero.jpg';
 import template from '../../assets/template.jpg';
