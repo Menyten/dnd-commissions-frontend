@@ -6,6 +6,7 @@ import SignUp from './views/signup/SignUp';
 import SignIn from './views/signin/SignIn';
 import Account from './views/account/Account';
 import Shop from './views/shop/Shop';
+import Browse from './views/browse/Browse';
 
 import Authenticated from './components/app/authenticated/Authenticated';
 import Toast from './components/common/toast/Toast';
@@ -21,6 +22,7 @@ function App() {
         <Authenticated path="/signin" component={SignIn} />
         <Authenticated path="/signup" component={SignUp} />
         <Route path="/account" component={Account} />
+        <Route path="/browse" component={Browse} />
         <Route path="/shop/:shopId" component={Shop} />
         <Route path="/" component={Start} />
       </Switch>

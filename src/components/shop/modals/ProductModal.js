@@ -14,7 +14,7 @@ import { setProducts } from '../../../context/actions/shopActions';
 import { fetchy } from '../../../utils/fetchy';
 
 const ProductModal = ({ open, toggleDialog }) => {
-  const { dispatch, state } = useContext(GlobalContext);
+  const { dispatch } = useContext(GlobalContext);
   const { shopId } = useParams();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');

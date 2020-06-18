@@ -6,7 +6,8 @@ import {
   Button,
   Typography,
   IconButton,
-  Link as MuiLink
+  Link as MuiLink,
+  Box
 } from '@material-ui/core';
 import { AccountCircle, Store } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
@@ -20,9 +21,9 @@ const NavBar = () => {
   const { user } = state;
   const classes = navbarStyles();
 
-  const renderSignedInNavigation = () => (
+  const SignedInNavigation = () => (
     <>
-      {renderShopkeeperNavigation()}
+      <ShopkeeperNavigation />
       <MuiLink component={Link} to="/account">
         <IconButton color="primary">
           <AccountCircle fontSize="large" />
@@ -31,7 +32,7 @@ const NavBar = () => {
     </>
   );
 
-  const renderShopkeeperNavigation = () =>
+  const ShopkeeperNavigation = () =>
     user.role === 'shopkeeper' && (
       <MuiLink component={Link} to={`/shop/${user.shopId}`}>
         <IconButton color="primary">
@@ -40,7 +41,7 @@ const NavBar = () => {
       </MuiLink>
     );
 
-  const renderSignedOutNavigation = () => (
+  const SignedOutNavigation = () => (
     <>
       <Button color="primary" component={Link} to="/signin">
         Sign in
@@ -58,20 +59,30 @@ const NavBar = () => {
   );
 
   return (
-    <AppBar className={classes.appbar} position="static">
+    <AppBar className={classes.appbar} position="sticky">
       <Container disableGutters={true}>
         <Toolbar>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            color="textSecondary"
+          <Box flexGrow="1">
+            <Typography
+              className={classes.title}
+              variant="h6"
+              color="textSecondary"
+              component={Link}
+              to="/"
+            >
+              Squig's lair
+            </Typography>
+          </Box>
+          <Button
+            className={classes.button}
+            color="primary"
             component={Link}
-            to="/"
+            to="/browse"
           >
-            Squig's lair
-          </Typography>
-          {user && renderSignedInNavigation()}
-          {!user && renderSignedOutNavigation()}
+            Browse
+          </Button>
+          {user && <SignedInNavigation />}
+          {!user && <SignedOutNavigation />}
         </Toolbar>
       </Container>
     </AppBar>

@@ -75,12 +75,14 @@ const Shop = () => {
           </Grid>
 
           <Grid item xs={12}>
-            <Grid container spacing={4}>
+            <Typography variant="h3">{shop?.shopTitle}</Typography>
+          </Grid>
+
+          <Grid item xs={12}>
+            <Grid container spacing={3}>
               <Grid item xs={12}>
                 <Box display="flex" alignItems="center">
-                  <Typography variant="h4">
-                    {shop?.owner.username}s products
-                  </Typography>
+                  <Typography variant="h4">Products</Typography>
                   <ShopOwner>
                     <IconButton onClick={toggleProductDialog}>
                       <AddCircle fontSize="large" color="primary" />

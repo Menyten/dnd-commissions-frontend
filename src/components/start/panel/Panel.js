@@ -11,9 +11,11 @@ const Panel = ({ children, title }) => {
       <Grid item xs={12}>
         <Typography variant="h4">{title}</Typography>
       </Grid>
-      <Grid className={classes.item} item xs={12}>
-        {children}
-      </Grid>
+      {children.map((child, i) => (
+        <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
+          {child}
+        </Grid>
+      ))}
     </Grid>
   );
 };
