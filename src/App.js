@@ -7,6 +7,7 @@ import SignIn from './views/signin/SignIn';
 import Account from './views/account/Account';
 import Shop from './views/shop/Shop';
 import Browse from './views/browse/Browse';
+import Product from './views/product/Product';
 
 import Authenticated from './components/app/authenticated/Authenticated';
 import Toast from './components/common/toast/Toast';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/account" component={Account} />
         <Route path="/browse" component={Browse} />
         <Route path="/shop/:shopId" component={Shop} />
+        <Route path="/:shopId/product/:productId" component={Product} />
         <Route path="/" component={Start} />
       </Switch>
       <Toast />

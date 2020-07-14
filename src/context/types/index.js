@@ -1,6 +1,9 @@
 // SHOP
 export const SET_SHOP = 'SET_SHOP';
-export const SET_PRODUCTS = 'SET_PRODUCTS';
+export const SET_SHOP_PRODUCTS = 'SET_SHOP_PRODUCTS';
+
+// USER
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 
 // AUTH
 export const SET_USER = 'SET_USER';

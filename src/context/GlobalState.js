@@ -4,6 +4,7 @@ import reducer from './reducer';
 const initialState = {
   user: null,
   shop: null,
+  products: null,
   token: null,
   snackbar: {
     open: false,
