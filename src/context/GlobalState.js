@@ -1,16 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import reducer from './reducer';
 
-const initialState = {
-  user: null,
-  shop: null,
-  token: null,
-  snackbar: {
-    open: false,
-    type: 'success',
-    message: ''
-  }
-};
+const initialState = {};
 
 const GlobalContext = createContext(initialState);
 
