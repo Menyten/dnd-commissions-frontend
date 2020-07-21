@@ -4,9 +4,11 @@ import {
   Container,
   Grid,
   Paper,
-  Typography,
   Box,
-  Divider
+  Divider,
+  Typography,
+  TextField,
+  Button
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -62,7 +64,26 @@ const Product = () => {
               shop info etc.
             </Grid>
             <Divider className={classes.divider} orientation="horizontal" />
-            <Typography>Hello</Typography>
+            <Grid item xs={12}>
+              <Typography variant="h4" gutterBottom>
+                Order
+              </Typography>
+              <TextField
+                variant="outlined"
+                label="Order description"
+                placeholder="Type your description here..."
+                rows={5}
+                fullWidth
+                multiline
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <Box textAlign="end">
+                <Button variant="contained" color="primary" size="large">
+                  Add to cart
+                </Button>
+              </Box>
+            </Grid>
           </Grid>
         </Box>
       </Container>
