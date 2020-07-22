@@ -5,19 +5,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import LoginIcon from '../../../../icons/login';
+import { Link } from 'react-router-dom';
 import { StyledList } from '../../../../../elements/common/navbar/components/drawer';
 
 const Drawer = ({ isDrawerOpen, toggleDrawer }) => {
   return (
     <MUIDrawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer}>
       <StyledList>
-        <ListItem button>
+        <ListItem button component={Link} to="/login">
           <ListItemIcon>
             <LoginIcon />
           </ListItemIcon>
           <ListItemText primary="Login" />
         </ListItem>
-        <ListItem button>
+        <ListItem button component={Link} to="/create-account">
           <ListItemIcon>
             <AccountBoxIcon />
           </ListItemIcon>

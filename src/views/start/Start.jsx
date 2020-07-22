@@ -1,12 +1,8 @@
 import React from 'react';
-import NavBar from '../../components/common/navbar';
+import View from '../../components/common/viewTemplate';
 
 const Start = () => {
-  return (
-    <div>
-      <NavBar />
-    </div>
-  );
+  return <View></View>;
 };
 
 export default Start;
