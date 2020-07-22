@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Start from './views/start/Start';
+import Start from './views/start';
 
 function App() {
   return (
