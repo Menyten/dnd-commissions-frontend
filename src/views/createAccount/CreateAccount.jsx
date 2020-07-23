@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
+import View from '../../components/common/viewTemplate';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker } from '@material-ui/pickers';
-import View from '../../components/common/viewTemplate';
 import { useForm, Controller } from 'react-hook-form';
 
 import fetchy from '../../utils/fetchy';
@@ -21,12 +21,7 @@ const CreateAccount = () => {
   const onSubmit = async data => {
     if (!data.birthdate) return;
 
-    const res = await fetchy.post({
-      query,
-      variables: {
-        ...data
-      }
-    });
+    const res = await fetchy(query, data);
 
     if (res.data.errors?.length) {
       return dispatch(showToast('error', res.data.errors[0].message));

@@ -26,7 +26,7 @@ const request = async (url = '', method = 'GET', payload = undefined) => {
   }
 };
 
-export default {
+export const fetchy = {
   get: async url => await request(url),
 
   post: async (payload, url) => await request(url, 'POST', payload),
@@ -35,3 +35,7 @@ export default {
 
   delete: async url => await request(url, 'DELETE')
 };
+
+// This is explicitly for making GraphQL requests
+export default async (query, variables) =>
+  await fetchy.post({ query, variables });
