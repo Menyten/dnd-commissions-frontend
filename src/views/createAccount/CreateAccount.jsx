@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
@@ -6,22 +6,32 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import { DatePicker } from '@material-ui/pickers';
 import View from '../../components/common/viewTemplate';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 
 import fetchy from '../../utils/fetchy';
 import query from '../../graphql/queries/createAccount';
 
+import { GlobalContext } from '../../context/GlobalState';
+import { showToast } from '../../context/actions/toastActions';
+
 const CreateAccount = () => {
-  const { register, handleSubmit, watch, errors } = useForm();
+  const { dispatch } = useContext(GlobalContext);
+  const { control, register, handleSubmit } = useForm();
 
   const onSubmit = async data => {
+    if (!data.birthdate) return;
+
     const res = await fetchy.post({
       query,
       variables: {
         ...data
       }
     });
-    console.log(res);
+
+    if (res.data.errors?.length) {
+      return dispatch(showToast('error', res.data.errors[0].message));
+    }
+    return dispatch(showToast('success', 'Account created'));
   };
 
   return (
@@ -65,17 +75,18 @@ const CreateAccount = () => {
             />
           </Grid>
           <Grid item xs={12}>
-            {/* <TextField
-              type="date"
+            <Controller
+              as={DatePicker}
+              inputVariant="outlined"
               name="birthdate"
-              variant="outlined"
               label="Birth date"
-              InputLabelProps={{ shrink: true }}
-              required
+              format="yyyy-MM-dd"
               fullWidth
+              required
+              defaultValue={null}
               inputRef={register}
-            /> */}
-            <DatePicker inputVariant="outlined" fullWidth />
+              control={control}
+            />
           </Grid>
           <Grid item xs={12}>
             <TextField

@@ -1,7 +1,13 @@
 import React, { createContext, useReducer } from 'react';
 import reducer from './reducer';
 
-const initialState = {};
+const initialState = {
+  toast: {
+    open: false,
+    type: 'success',
+    message: ''
+  }
+};
 
 const GlobalContext = createContext(initialState);
 
