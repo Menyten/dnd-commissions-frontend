@@ -53,7 +53,7 @@ const CreateAccount = () => {
             <TextField
               name="firstname"
               variant="outlined"
-              label="First name"
+              label="First Name"
               required
               fullWidth
               inputRef={register}
@@ -63,7 +63,7 @@ const CreateAccount = () => {
             <TextField
               name="lastname"
               variant="outlined"
-              label="Last name"
+              label="Last Name"
               required
               fullWidth
               inputRef={register}
@@ -74,7 +74,7 @@ const CreateAccount = () => {
               as={DatePicker}
               inputVariant="outlined"
               name="birthdate"
-              label="Birth date"
+              label="Birth Date"
               format="yyyy-MM-dd"
               fullWidth
               required

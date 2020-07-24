@@ -1,22 +1,20 @@
 import React, { useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import View from '../../components/common/viewTemplate';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import MUILink from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import { useForm } from 'react-hook-form';
 
 import fetchy from '../../utils/fetchy';
-import query from '../../graphql/queries/login';
+import query from '../../graphql/queries/createShop';
 
 import { GlobalContext } from '../../context/GlobalState';
 import { showToast } from '../../context/actions/toastActions';
-import { login } from '../../context/actions/authActions';
 
-const Login = () => {
+const CreateShop = () => {
   const { dispatch } = useContext(GlobalContext);
   const { register, handleSubmit } = useForm();
   const history = useHistory();
@@ -26,24 +24,23 @@ const Login = () => {
     if (!res.ok) {
       return dispatch(showToast('error', res.data.errors[0].message));
     }
-    dispatch(login(res.data.data.login.user));
-    return history.push('/');
+    dispatch(showToast('success', 'Shop created'));
+    return history.push('/shop');
   };
 
   return (
     <View>
       <Box component="form" mt={2} onSubmit={handleSubmit(onSubmit)}>
         <Typography variant="h4" align="center" gutterBottom>
-          Login
+          Create Shop
         </Typography>
 
         <Grid container spacing={2}>
           <Grid item xs={12}>
             <TextField
-              type="email"
-              name="email"
+              name="shopTitle"
               variant="outlined"
-              label="Email"
+              label="Shop Title"
               required
               fullWidth
               inputRef={register}
@@ -51,24 +48,19 @@ const Login = () => {
           </Grid>
           <Grid item xs={12}>
             <TextField
-              type="password"
-              name="password"
+              name="shopDescription"
               variant="outlined"
-              label="Password"
+              label="Shop Description"
               required
               fullWidth
+              multiline
               inputRef={register}
             />
-          </Grid>
-          <Grid item xs={12}>
-            <MUILink variant="body2" component={Link} to="/create-account">
-              Forgot password?
-            </MUILink>
           </Grid>
         </Grid>
         <Box mt={4}>
           <Button type="submit" variant="contained" color="primary" fullWidth>
-            Login
+            Create
           </Button>
         </Box>
       </Box>
@@ -76,4 +68,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default CreateShop;
