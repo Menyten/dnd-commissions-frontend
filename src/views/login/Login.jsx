@@ -1,7 +1,3 @@
-/* "files.associations": {
-  "*.js": "javascriptreact"
-}, */
-
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import View from '../../components/common/viewTemplate';
@@ -18,6 +14,7 @@ import query from '../../graphql/queries/login';
 
 import { GlobalContext } from '../../context/GlobalState';
 import { showToast } from '../../context/actions/toastActions';
+import { login } from '../../context/actions/authActions';
 
 const Login = () => {
   const { dispatch } = useContext(GlobalContext);
@@ -28,6 +25,7 @@ const Login = () => {
     if (!res.ok) {
       return dispatch(showToast('error', res.data.errors[0].message));
     }
+    return dispatch(login(res.data.data.login.user));
   };
 
   return (

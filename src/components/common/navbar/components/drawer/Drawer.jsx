@@ -4,6 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import HomeIcon from '@material-ui/icons/Home';
 import LoginIcon from '../../../../icons/login';
 import { Link } from 'react-router-dom';
 import { StyledList } from '../../../../../elements/common/navbar/components/drawer';
@@ -12,6 +13,12 @@ const Drawer = ({ isDrawerOpen, toggleDrawer }) => {
   return (
     <MUIDrawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer}>
       <StyledList>
+        <ListItem button component={Link} to="/">
+          <ListItemIcon>
+            <HomeIcon />
+          </ListItemIcon>
+          <ListItemText primary="Home" />
+        </ListItem>
         <ListItem button component={Link} to="/login">
           <ListItemIcon>
             <LoginIcon />
