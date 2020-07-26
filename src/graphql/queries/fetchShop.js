@@ -1,6 +1,6 @@
 export default /* GraphQL */ `
-  query($shopId: ID) {
-    fetchShop(shopId: $shopId) {
+  query($id: ID) {
+    shop(id: $id) {
       _id
       shopTitle
       shopDescription
@@ -9,21 +9,11 @@ export default /* GraphQL */ `
         _id
         username
       }
-      reviews {
-        text
-        rating
-        username
-      }
       products {
         _id
         productTitle
         productDescription
         price
-      }
-      displayProducts {
-        _id
-        image
-        description
       }
     }
   }

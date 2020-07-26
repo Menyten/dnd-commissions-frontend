@@ -1,6 +1,6 @@
 export default /* GraphQL */ `
   query {
-    checkSignedIn {
+    me {
       token
       user {
         _id

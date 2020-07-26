@@ -9,7 +9,11 @@ import Shop from './views/shop';
 import CreateAccount from './views/createAccount';
 import CreateShop from './views/createShop';
 
+import useAuthCheck from './hooks/useAuthCheck';
+
 function App() {
+  useAuthCheck();
+
   return (
     <>
       <Switch>

@@ -3,6 +3,7 @@ import reducer from './reducer';
 
 const initialState = {
   toast: {
+    user: {},
     open: false,
     type: 'success',
     message: ''
