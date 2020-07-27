@@ -12,8 +12,10 @@ const useAuthCheck = () => {
   useEffect(() => {
     const check = async () => {
       const res = await fetchy(query);
-      if (res.data.errors) return;
-      dispatch(login(res.data.data.me.user));
+      if (res.data?.errors) return;
+      if (res.data?.data.me.user) {
+        return dispatch(login(res.data.data.me.user));
+      }
     };
     if (!user) {
       check();
