@@ -3,29 +3,22 @@ import View from '../../components/common/viewTemplate';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+
+import AddProductCollapsible from '../../components/views/shop/addProductCollapsible';
 
 import fetchy from '../../utils/fetchy';
 import query from '../../graphql/queries/fetchShop';
-import mutation from '../../graphql/mutations/addProduct';
 
 import { GlobalContext } from '../../context/GlobalState';
-import { showToast } from '../../context/actions/toastActions';
 
-import Accordion from '@material-ui/core/Accordion';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 const Shop = () => {
-  const { state, dispatch } = useContext(GlobalContext);
+  const { state } = useContext(GlobalContext);
   const { user } = state;
   const { shopId } = user ?? {};
   const [shop, setShop] = useState({});
-  const [productTitle, setProductTitle] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [price, setPrice] = useState('');
 
   useEffect(() => {
     if (!shopId) return;
@@ -36,32 +29,31 @@ const Shop = () => {
     fetchShop();
   }, [shopId]);
 
-  const emptyFields = () => {
-    setProductTitle('');
-    setProductDescription('');
-    setPrice('');
-  };
-
-  const addProduct = async e => {
-    e.preventDefault();
-    const data = {
-      shop: shopId,
-      productTitle,
-      productDescription,
-      price
-    };
-    const res = await fetchy(mutation, data);
-    if (!res.ok) return dispatch(showToast('error', 'Failed to add product'));
-    emptyFields();
-    return dispatch(showToast('success', 'Successfully added product'));
-  };
+  const renderProducts = () =>
+    shop.products?.map(({ productDescription, productTitle, price, _id }) => (
+      <Grid item xs={12} key={_id}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" component="h3" gutterBottom>
+              {productTitle}
+            </Typography>
+            <Typography variant="body2" gutterBottom>
+              {productDescription}
+            </Typography>
+            <Box mt={3}>
+              <Typography>{price} SEK</Typography>
+            </Box>
+          </CardContent>
+        </Card>
+      </Grid>
+    ));
 
   return (
     <View>
       <Box mt={2}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Typography variant="h4" align="center">
+            <Typography variant="h4" component="h2" align="center">
               {shop.shopTitle}
             </Typography>
           </Grid>
@@ -69,72 +61,18 @@ const Shop = () => {
             <Typography gutterBottom>{shop.shopDescription}</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h5" align="center">
+            <Typography variant="h5" component="h2" align="center">
               Products
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Accordion square={true}>
-              <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
-                aria-controls="add-product-content"
-                id="add-product-header"
-              >
-                <Typography>Add product</Typography>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Grid
-                  container
-                  spacing={2}
-                  component="form"
-                  onSubmit={addProduct}
-                >
-                  <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      label="Product Title"
-                      fullWidth
-                      required
-                      value={productTitle}
-                      onChange={e => setProductTitle(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      variant="outlined"
-                      label="Product Description"
-                      fullWidth
-                      required
-                      multiline
-                      value={productDescription}
-                      onChange={e => setProductDescription(e.target.value)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                      type="number"
-                      variant="outlined"
-                      label="Product Price"
-                      fullWidth
-                      required
-                      value={price}
-                      onChange={e => setPrice(e.target.value * 1)}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      fullWidth
-                    >
-                      Add product
-                    </Button>
-                  </Grid>
-                </Grid>
-              </AccordionDetails>
-            </Accordion>
+            <AddProductCollapsible
+              title="Add product"
+              shop={shop}
+              setShop={setShop}
+            />
           </Grid>
+          {renderProducts()}
         </Grid>
       </Box>
     </View>
