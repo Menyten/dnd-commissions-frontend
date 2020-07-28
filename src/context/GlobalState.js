@@ -2,8 +2,8 @@ import React, { createContext, useReducer } from 'react';
 import reducer from './reducer';
 
 const initialState = {
+  user: null,
   toast: {
-    user: {},
     open: false,
     type: 'success',
     message: ''
