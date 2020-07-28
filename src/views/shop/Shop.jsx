@@ -3,16 +3,19 @@ import View from '../../components/common/viewTemplate';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 import AddProductCollapsible from '../../components/views/shop/addProductCollapsible';
 
 import fetchy from '../../utils/fetchy';
 import query from '../../graphql/queries/fetchShop';
+import mutation from '../../graphql/mutations/deleteProduct';
 
 import { GlobalContext } from '../../context/GlobalState';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
 
 const Shop = () => {
   const { state } = useContext(GlobalContext);
@@ -29,6 +32,14 @@ const Shop = () => {
     fetchShop();
   }, [shopId]);
 
+  const deleteProduct = async id => {
+    const res = await fetchy(mutation, { id });
+    const filteredProducts = shop.products.filter(
+      ({ _id }) => _id !== res.data.data.deleteProduct._id
+    );
+    setShop({ ...shop, products: filteredProducts });
+  };
+
   const renderProducts = () =>
     shop.products?.map(({ productDescription, productTitle, price, _id }) => (
       <Grid item xs={12} key={_id}>
@@ -44,6 +55,16 @@ const Shop = () => {
               <Typography>{price} SEK</Typography>
             </Box>
           </CardContent>
+          <CardActions>
+            <Button
+              variant="outlined"
+              color="primary"
+              size="small"
+              onClick={() => deleteProduct(_id)}
+            >
+              Delete
+            </Button>
+          </CardActions>
         </Card>
       </Grid>
     ));
