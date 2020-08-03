@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -8,7 +8,10 @@ import Drawer from './components/drawer';
 import Products from './components/products';
 import { StyledTitle } from '../../../elements/common/navbar';
 
+import { GlobalContext } from '../../../context/GlobalState';
+
 const NavBar = () => {
+  const { state } = useContext(GlobalContext);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
@@ -18,7 +21,7 @@ const NavBar = () => {
       <AppBar position="static">
         <Toolbar>
           <StyledTitle variant="h6">Squig's Lair</StyledTitle>
-          <Products />
+          {state.user && <Products />}
           <IconButton
             edge="end"
             color="inherit"
