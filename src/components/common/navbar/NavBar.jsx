@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import Drawer from './components/drawer';
-import Products from './components/products';
+import Products from './components/shoppingCart';
 import { StyledTitle } from '../../../elements/common/navbar';
 
 import { GlobalContext } from '../../../context/GlobalState';
