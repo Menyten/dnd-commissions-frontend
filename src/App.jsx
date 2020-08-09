@@ -8,6 +8,7 @@ import Login from './views/login';
 import Shop from './views/shop';
 import CreateAccount from './views/createAccount';
 import CreateShop from './views/createShop';
+import Product from './views/product';
 
 import useAuthCheck from './hooks/useAuthCheck';
 
@@ -17,6 +18,7 @@ function App() {
   return (
     <>
       <Switch>
+        <Route path="/product/:id" component={Product} />
         <Route path="/shop" component={Shop} />
         <Route path="/create-shop" component={CreateShop} />
         <Authenticated path="/create-account" component={CreateAccount} />
