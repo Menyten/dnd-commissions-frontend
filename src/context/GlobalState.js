@@ -3,6 +3,7 @@ import reducer from './reducer';
 
 const initialState = {
   user: null,
+  cart: [],
   toast: {
     open: false,
     type: 'success',

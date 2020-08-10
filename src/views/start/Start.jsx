@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import View from '../../components/common/viewTemplate';
-import Typography from '@material-ui/core/Typography';
 
 import ProductCard from '../../components/views/start/productCard';
 
@@ -32,7 +31,6 @@ const Start = () => {
 
   return (
     <View>
-      <Typography gutterBottom>Start Page</Typography>
       <Products />
     </View>
   );

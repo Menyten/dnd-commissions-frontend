@@ -1,7 +1,9 @@
-import { SHOW_TOAST, HIDE_TOAST, LOGIN, LOGOUT } from '../types';
+import { SHOW_TOAST, HIDE_TOAST, LOGIN, LOGOUT, ADD_TO_CART } from '../types';
 
 export default (state, { type, payload }) => {
   switch (type) {
+    case ADD_TO_CART:
+      return { ...state, cart: [...state.cart, { ...payload }] };
     case LOGIN:
       return { ...state, user: payload };
     case LOGOUT:

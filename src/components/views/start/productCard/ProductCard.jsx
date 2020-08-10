@@ -15,7 +15,7 @@ const ProductCard = ({ id, title, description, price, shop }) => {
   };
 
   return (
-    <Card>
+    <Card component={Box} my={2}>
       <CardActionArea onClick={goToProductPage}>
         <CardHeader
           title={title}

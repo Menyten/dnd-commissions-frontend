@@ -14,11 +14,11 @@ import {
   StyledTitle
 } from '../../../../../../../elements/common/navbar/components/shoppingCart';
 
-const CartItem = () => {
+const CartItem = ({ productTitle, orderDescription, price }) => {
   return (
     <Card>
       <CardHeader
-        title="Single sketch of your character 1920x1080"
+        title={productTitle}
         titleTypographyProps={{
           variant: 'subtitle1',
           component: 'h2'
@@ -30,11 +30,7 @@ const CartItem = () => {
             <StyledTitle color="textSecondary">Your Description</StyledTitle>
           </StyledAccordionSummary>
           <AccordionDetails>
-            <Typography>
-              John is a tall and dark skinned elf. One ear is pointy and the
-              other has been bitten of by the tip. Short hair with a constant
-              frown on his face.
-            </Typography>
+            <Typography>{orderDescription}</Typography>
           </AccordionDetails>
         </Accordion>
         <Box
@@ -43,7 +39,7 @@ const CartItem = () => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Typography color="textSecondary">100 SEK</Typography>
+          <Typography color="textSecondary">{price} SEK</Typography>
 
           <Button variant="outlined" color="secondary">
             Remove
