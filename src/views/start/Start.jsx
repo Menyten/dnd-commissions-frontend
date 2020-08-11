@@ -12,6 +12,7 @@ const Start = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await fetchy(query);
+      if (!res.ok) return;
       setProducts(res.data.data.products);
     };
     fetchProducts();

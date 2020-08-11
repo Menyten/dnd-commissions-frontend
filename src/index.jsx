@@ -9,17 +9,20 @@ import theme from './theme';
 import { GlobalProvider } from './context/GlobalState';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
+import { ThemeProvider } from 'styled-components';
 
 ReactDOM.render(
   <StylesProvider injectFirst>
     <GlobalProvider>
       <MuiThemeProvider theme={theme}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <CssBaseline />
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
-        </MuiPickersUtilsProvider>
+        <ThemeProvider theme={theme}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <CssBaseline />
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </MuiPickersUtilsProvider>
+        </ThemeProvider>
       </MuiThemeProvider>
     </GlobalProvider>
   </StylesProvider>,
