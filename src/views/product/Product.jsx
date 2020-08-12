@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import View from '../../components/common/viewTemplate';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
@@ -35,7 +36,8 @@ const Product = () => {
         productTitle,
         orderDescription,
         price,
-        productId: id
+        productId: id,
+        cartItemId: uuidv4()
       })
     );
   };
